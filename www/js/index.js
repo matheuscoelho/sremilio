@@ -52,6 +52,7 @@ var app = {
             },
             "windows": {}
         });
+        
         console.log('after init');
 
         push.on('registration', function(data) {
