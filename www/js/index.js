@@ -38,10 +38,6 @@
 
         app.setupPush();
 
-        document.addEventListener("backbutton", function (e) {
-            alert('deu');
-            e.preventDefault();
-        }, false );
     },
     setupPush: function() {
         console.log('calling push init');
