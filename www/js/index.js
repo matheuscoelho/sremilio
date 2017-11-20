@@ -65,14 +65,9 @@ var app = {
                 // Post registrationId to your app server as the value has changed
             }
 
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
+            alert('received');
+            alert(ata.registrationId);
 
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
-
-            document.getElementById("teste").value = 'deu: ' + data.registrationId;
         });
 
         push.on('error', function(e) {
