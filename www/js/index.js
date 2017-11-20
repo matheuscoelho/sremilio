@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -37,6 +37,11 @@ var app = {
         console.log('calling setup pushh');
 
         app.setupPush();
+
+        document.addEventListener("backbutton", function (e) {
+            alert('deu');
+            e.preventDefault();
+        }, false );
     },
     setupPush: function() {
         console.log('calling push init');
@@ -80,7 +85,7 @@ var app = {
                 null,                 // callback
                 data.title,           // title
                 'Ok'                  // buttonName
-            );
-       });
+                );
+        });
     }
 };
