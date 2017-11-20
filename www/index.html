@@ -35,46 +35,28 @@
         * Enable inline JS: add 'unsafe-inline' to default-src
         * Enable eval(): add 'unsafe-eval' to default-src
     * Create your own at http://cspisawesome.com
--->
-<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-<link rel="stylesheet" type="text/css" href="css/index.css" />
-<title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World</title>
 </head>
 
 <body>
-
-    <div id="inicio" class="view" style="display:block;">
-
-        <p class="event waiting">Requesting Registration ID</p>
-        <p class="event received">Registered</p>
-        <input type="text" id="teste"> 
-
-        <div id="inicio_1"><img src="img/logo.png"></div>
-        <div id="inicio_2" class="entrar_bnt"><h1>ENTRAR</h1></div>
-        <div id="inicio_3"><h1>CRIAR CONTA</h1></div>
+    <div class="app">
+        <h1>PhoneGap</h1>
+        <div id="registration" class="blink">
+            <p class="event waiting">Requesting Registration ID</p>
+            <p class="event received">Registeredd</p>
+            <input type="text" id="teste"> 
+        </div>
     </div>
-
-    <div id="entrar" class="view">
-        <form method="POST" id="entrar_form">
-            <div style="width:vw; height:80vh">
-                <div id="entrar_1"><h1>Entrar</h1></div>
-                <div id="entrar_2"><p>NOME DE USUARIO OU E-MAIL</p></div>
-                <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
-                <div id="entrar_4"><p>SENHA<p></div>
-                <div id="entrar_5"><input type="password" name="senha" id="senha"></div>
-                <div id="entrar_6"><p>Esqueceu sua senha?</p></div>
-            </div>                
-            <div id="entrar_7"><input type="submit" value="Entrar"></div>
-        </form>
-    </div>
-
     
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
     <script type="text/javascript">
-    app.initialize();
+        app.initialize();
     </script>
 </body>
 
