@@ -73,6 +73,7 @@ var app = {
             receivedElement.setAttribute('style', 'display:block;');
 
             document.getElementById("teste").value = 'deu: ' + data.registrationId;
+
         });
 
         push.on('error', function(e) {
