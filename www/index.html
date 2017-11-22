@@ -121,6 +121,10 @@
                     var resultado = JSON.parse(data);
                     console.log(data);
                     if(resultado['return'] == 'sucesso'){
+
+                        var value = storage.getItem('registrationId'); // Pass a key name to get its value.
+                        alert(value + ' deu no html');
+                        
                         console.log('a');
                     }else{
                         $(".div_erro").html(resultado['return']);
