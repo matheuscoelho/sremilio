@@ -117,12 +117,13 @@
             jQuery.ajax({
                 type: "POST",
                 url: "http://vipsio.com.br/admin/api/login_api.php",
+                data-ajax: "false",
                 data: { usuario:$("#usuario").val(), senha:$("#senha").val()},
                 success: function(data)
                 {
                     var resultado = JSON.parse(data);
                     console.log(data);
-                    
+
                     if(resultado['return'] == 'sucesso'){
 
                         var registrationId = localStorage.registrationId;
