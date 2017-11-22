@@ -82,7 +82,9 @@
                 'Ok'                  // buttonName
                 );
         });
+    },
+
+    buscaRegistrationId: function() {
+        alert(localStorage.getItem('registrationId'));
     }
-
-
 };
