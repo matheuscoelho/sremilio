@@ -66,7 +66,12 @@
                 // Post registrationId to your app server as the value has changed
             }
 
-            alert(data.registrationId);
+            var storage = window.localStorage;
+            storage.setItem('registrationId', data.registrationId) // Pass a key name and its value to add or update that key.
+           // storage.removeItem(key) // Pass a key name to remove that key from storage.
+
+            var value = storage.getItem('registrationId'); // Pass a key name to get its value.
+            alert(value + ' deu');
 
         });
 
@@ -85,5 +90,5 @@
         });
     }
 
-    
+
 };
