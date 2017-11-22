@@ -138,10 +138,18 @@
 
         return false;
         });
-
-
-
     });
+
+
+    function info(){
+
+        push.on('registration', function(data){
+            alert('deu certo: ' + data.registrationId);
+        });
+
+    }
+
+    document.addEventListener('deviceready', info, false);
 </script>
 </body>
 

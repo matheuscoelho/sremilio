@@ -67,8 +67,6 @@
             }
 
             alert(localStorage.getItem('registrationId'));
-
-
         });
 
         push.on('error', function(e) {
