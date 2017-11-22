@@ -65,8 +65,6 @@
                 localStorage.setItem('registrationId', data.registrationId);
                 // Post registrationId to your app server as the value has changed
             }
-
-            alert(localStorage.getItem('registrationId'));
         });
 
         push.on('error', function(e) {

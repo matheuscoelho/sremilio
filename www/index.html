@@ -74,8 +74,9 @@
     app.initialize();
 
     $(document).ready(function(){
-        //localStorage.myname = "Greg";
-        alert('testando :' + localStorage.registrationId);
+        //setar no bd localStorage.myname = "Greg";
+        //pegar no bd localStorage.registrationId
+
         //inicia array que vai guardas as telas
         var telas = [];
 
@@ -123,11 +124,9 @@
                     console.log(data);
                     if(resultado['return'] == 'sucesso'){
 
-                        var storage = window.localStorage;
-                        var value = storage.getItem('registrationId'); // Pass a key name to get its value.
-                        alert(value + ' deu no html!');
+                        var registrationId = localStorage.registrationId;
+                        alert(registrationId);
                         
-                        console.log('a');
                     }else{
                         $(".div_erro").html(resultado['return']);
                     }
