@@ -136,9 +136,55 @@
                 } 
             });
 
-return false;
-});
-});
+        return false;
+        });
+
+
+
+        function myPush(){
+
+            alert('0');
+
+            var push = PushNotification.init({
+                android: {
+                    senderID: "sremilio-186420" //id do projeto do google console
+                },
+                ios: {
+                    alert: "true",
+                    badge: "true",
+                    sound: "true"
+                },
+                windows: {}
+
+            });
+
+            alert('1');
+            //evento dispara quando o google registra o aparelho
+            push.on('registration', function(data){
+
+             alert('2');
+                //quando o google clound messaging registrar nosso device, vamos
+                //armazenar o token no nosso input
+                var input = document.getElementById('token');
+                input.value = data.registrationId;
+            });
+
+            //evento é disparado quan do uma nova notificação é enviada.
+            push.on('notification', function(data){
+                //o que nos importa agora é titulo da mensagem e a mensagem em si.
+                //então vamos utilizar data.message e data.title.
+                alert('Título da mensagem: ' + data.title+ '\n Mensagem: ' + data.message);
+            });
+
+            //da, dispara quando um erro acontece
+            push.on('error', function(e){
+            alert('err');
+                //e.message
+            });
+        }
+
+        document.addEventListener('deviceready', myPush, false);
+    });
 </script>
 </body>
 

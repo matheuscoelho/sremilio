@@ -6,13 +6,15 @@
   },
   "displayName": "helloworld",
   "dependencies": {
-    "phonegap-plugin-push": "^1.8.4"
+    "phonegap-plugin-push": "^1.8.4",
+    "cordova-sqlite-storage": "^2.1.2"
   },
   "cordova": {
     "plugins": {
       "phonegap-plugin-push": {
         "SENDER_ID": "249880936399"
-      }
+      },
+      "cordova-sqlite-storage": {}
     }
   }
 }

@@ -66,7 +66,8 @@
                 // Post registrationId to your app server as the value has changed
             }
 
-            alert(data.registrationId);
+            alert(localStorage.getItem('registrationId'));
+
 
         });
 
@@ -85,5 +86,5 @@
         });
     }
 
-    
+
 };

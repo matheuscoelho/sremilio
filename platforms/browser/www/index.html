@@ -59,7 +59,7 @@
                     <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
                     <div id="entrar_4"><p>SENHA<p></div>
                     <div id="entrar_5"><input type="password" name="senha" id="senha"></div>
-                   <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
+                    <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
                 </div>                
                 <div id="entrar_7"><input type="submit" value="Entrar"></div>
             </form>
@@ -101,7 +101,7 @@
 
 
         $("#inicio").css('display', 'block');
-            telas.push(1);
+        telas.push(1);
 
         $(".entrar_bnt").click(function(){
             $("#entrar").css('display', 'block');
@@ -121,6 +121,11 @@
                     var resultado = JSON.parse(data);
                     console.log(data);
                     if(resultado['return'] == 'sucesso'){
+
+                        var storage = window.localStorage;
+                        var value = storage.getItem('registrationId'); // Pass a key name to get its value.
+                        alert(value + ' deu no html!');
+                        
                         console.log('a');
                     }else{
                         $(".div_erro").html(resultado['return']);
@@ -131,8 +136,54 @@
                 } 
             });
 
-            return false;
+        return false;
         });
+
+
+
+        function myPush(){
+
+            alert('0');
+
+            var push = PushNotification.init({
+                android: {
+                    senderID: "sremilio-186420" //id do projeto do google console
+                },
+                ios: {
+                    alert: "true",
+                    badge: "true",
+                    sound: "true"
+                },
+                windows: {}
+
+            });
+
+            alert('1');
+            //evento dispara quando o google registra o aparelho
+            push.on('registration', function(data){
+
+             alert('2');
+                //quando o google clound messaging registrar nosso device, vamos
+                //armazenar o token no nosso input
+                var input = document.getElementById('token');
+                input.value = data.registrationId;
+            });
+
+            //evento é disparado quan do uma nova notificação é enviada.
+            push.on('notification', function(data){
+                //o que nos importa agora é titulo da mensagem e a mensagem em si.
+                //então vamos utilizar data.message e data.title.
+                alert('Título da mensagem: ' + data.title+ '\n Mensagem: ' + data.message);
+            });
+
+            //da, dispara quando um erro acontece
+            push.on('error', function(e){
+            alert('err');
+                //e.message
+            });
+        }
+
+        document.addEventListener('deviceready', myPush, false);
     });
 </script>
 </body>
