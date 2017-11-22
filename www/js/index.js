@@ -84,7 +84,8 @@
         });
     },
 
-    buscaRegistrationId: function() {
-        alert(localStorage.getItem('registrationId'));
+    buscaRegistrationId: function(data) {
+        data.registrationId = localStorage.getItem('registrationId');
+        alert('foi foi foi:' + data.registrationId);
     }
 };
