@@ -82,10 +82,5 @@
                 'Ok'                  // buttonName
                 );
         });
-    },
-
-    buscaRegistrationId: function(data) {
-        data.registrationId = localStorage.getItem('registrationId');
-        alert('foi foi foi:' + data.registrationId);
     }
 };
