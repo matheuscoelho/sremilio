@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <div class="app">
+    <div class="app" onclick="">
         <div id="inicio" class="view" style="display: none;" tela="1">
             <div id="inicio_1"><img src="img/logo.png"></div>
             <div id="inicio_2" class="entrar_bnt"><h1>ENTRAR</h1></div>
@@ -73,8 +73,10 @@
     <script type="text/javascript" type="text/javascript">
     app.initialize();
 
-
     $(document).ready(function(){
+        //setar no bd localStorage.myname = "Greg";
+        //pegar no bd localStorage.registrationId
+
         //inicia array que vai guardas as telas
         var telas = [];
 
@@ -122,11 +124,9 @@
                     console.log(data);
                     if(resultado['return'] == 'sucesso'){
 
-                        var storage = window.localStorage;
-                        var value = storage.getItem('registrationId'); // Pass a key name to get its value.
-                        alert(value + ' deu no html!');
+                        var registrationId = localStorage.registrationId;
+                        alert(registrationId);
                         
-                        console.log('a');
                     }else{
                         $(".div_erro").html(resultado['return']);
                     }
@@ -136,22 +136,10 @@
                 } 
             });
 
-        return false;
-        });
-    });
+return false;
+});
+});
 
-
-    function info(){
-
-        alert('info');
-
-        push.on('registration', function(data){
-            alert('deu certo: ' + data.registrationId);
-        });
-
-    }
-
-    document.addEventListener('deviceready', info, false);
 </script>
 </body>
 
