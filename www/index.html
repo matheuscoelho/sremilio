@@ -59,7 +59,7 @@
                     <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
                     <div id="entrar_4"><p>SENHA<p></div>
                     <div id="entrar_5"><input type="password" name="senha" id="senha"></div>
-                   <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
+                    <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
                 </div>                
                 <div id="entrar_7"><input type="submit" value="Entrar"></div>
             </form>
@@ -101,7 +101,7 @@
 
 
         $("#inicio").css('display', 'block');
-            telas.push(1);
+        telas.push(1);
 
         $(".entrar_bnt").click(function(){
             $("#entrar").css('display', 'block');
@@ -122,6 +122,7 @@
                     console.log(data);
                     if(resultado['return'] == 'sucesso'){
 
+                        var storage = window.localStorage;
                         var value = storage.getItem('registrationId'); // Pass a key name to get its value.
                         alert(value + ' deu no html');
                         
@@ -135,9 +136,9 @@
                 } 
             });
 
-            return false;
-        });
-    });
+return false;
+});
+});
 </script>
 </body>
 
