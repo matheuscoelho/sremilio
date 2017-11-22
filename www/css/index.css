@@ -36,6 +36,16 @@ body {
     text-transform:uppercase;
     width: 100vw;
     height: 100vh;
+    color: #FFF;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    color: #BBB;
+    text-align: left;
 }
 
 /* Portrait layout (default) */
@@ -43,10 +53,31 @@ body {
     width: 100vw;
     height: 100vh;
 }
-.app div{
+.app .view{
     width: 100vw;
     height: 100vh;
+}
 
+/* DIV ERRO *********************************/
+.div_erro{
+    color: red;
+    text-align: center;
+    text-transform: none;
+}
+
+/* TELA INICIAL - ENTRAR OU CADASTRAR **********************************************/
+#inicio div{
+    position: relative;
+}
+
+#inicio h1{
+    height: 50%;
+    width: 100%;
+
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;    
 }
 
 #inicio #inicio_1{
@@ -56,8 +87,7 @@ body {
 }
 
 #inicio #inicio_1 img{
-    width: 70%;
-    margin: 0 auto;
+    height: 70%;
     position: absolute;
     top: 0; bottom: 0;
     left: 0; right: 0;
@@ -67,9 +97,53 @@ body {
 #inicio #inicio_2{
     height: 10%;
     background-color: #FFF;
+    color: #000;
 }
 
 #inicio #inicio_3{
     height: 10%;
     color: #FFF;
+}
+
+/* ENTRAR ***********************************************/
+
+#entrar #entrar_form{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+#entrar #entrar_form input[type="text"], #entrar #entrar_form input[type="password"]{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    outline: none;
+    border: none;
+    border-bottom:1px solid #FFF;
+    width: 100%;
+    height: 30px;
+
+    background: none;  
+    margin-bottom: 6px;
+    color: #FFF;
+}
+
+#entrar #entrar_1{
+    padding-top: 30%;
+    height: 10%;
+}
+#entrar #entrar_7{
+    height: 15vw;
+}
+
+#entrar #entrar_7 input{
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    border: none;
+    outline: none;
 }

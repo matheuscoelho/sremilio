@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -34,8 +34,10 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         console.log('Received Device Ready Event');
-        console.log('calling setup push');
+        console.log('calling setup pushh');
+
         app.setupPush();
+
     },
     setupPush: function() {
         console.log('calling push init');
@@ -51,6 +53,7 @@ var app = {
             },
             "windows": {}
         });
+        
         console.log('after init');
 
         push.on('registration', function(data) {
@@ -63,12 +66,8 @@ var app = {
                 // Post registrationId to your app server as the value has changed
             }
 
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
+            alert(data.registrationId);
 
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
         });
 
         push.on('error', function(e) {
@@ -82,7 +81,9 @@ var app = {
                 null,                 // callback
                 data.title,           // title
                 'Ok'                  // buttonName
-            );
-       });
+                );
+        });
     }
+
+    
 };

@@ -35,27 +35,106 @@
         * Enable inline JS: add 'unsafe-inline' to default-src
         * Enable eval(): add 'unsafe-eval' to default-src
     * Create your own at http://cspisawesome.com
-    -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+-->
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<title>Hello World</title>
 </head>
 
 <body>
     <div class="app">
-        <h1>PhoneGap</h1>
-        <div id="registration" class="blink">
-            <p class="event waiting">Requesting Registration ID</p>
-            <p class="event received">Registered</p>
+        <div id="inicio" class="view" style="display: none;" tela="1">
+            <div id="inicio_1"><img src="img/logo.png"></div>
+            <div id="inicio_2" class="entrar_bnt"><h1>ENTRAR</h1></div>
+            <div id="inicio_3"><h1>CRIAR CONTA</h1></div>
+        </div>
+
+        <div id="entrar" class="view" style="display: none;" tela="2">
+            <form method="POST" id="entrar_form">
+                <div style="width:80vw; height:80vh">
+                    <div id="entrar_1"><h1>Entrar</h1></div>
+                    <div class="div_erro"></div>
+                    <div id="entrar_2"><p>NOME DE USUARIO OU E-MAIL</p></div>
+                    <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
+                    <div id="entrar_4"><p>SENHA<p></div>
+                    <div id="entrar_5"><input type="password" name="senha" id="senha"></div>
+                   <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
+                </div>                
+                <div id="entrar_7"><input type="submit" value="Entrar"></div>
+            </form>
         </div>
     </div>
+
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" type="text/javascript">
+    app.initialize();
 
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+
+    $(document).ready(function(){
+        //inicia array que vai guardas as telas
+        var telas = [];
+
+
+        // BOTÃO VOLTAR ********************************************************
+        //vai gerando o caminho q a pessoa fez adicionando as telas no array durante a navegação
+        //quando chega aqui eu tiro a ultima posição do array e volto a tela do historico
+        document.addEventListener("backbutton", function (e) {
+            if(telas.length > 1){
+                if(telas[telas.length - 1] > 1){
+                    telas.pop();
+
+                    $('.view').css('display', 'none');
+                    $('div[tela="' + telas[telas.length - 1] + '"]').css('display', 'block');
+                }else{
+                    navigator.app.exitApp();
+                }
+            }else{
+                navigator.app.exitApp();
+            }
+
+            e.preventDefault();
+        }, false );
+
+
+        $("#inicio").css('display', 'block');
+            telas.push(1);
+
+        $(".entrar_bnt").click(function(){
+            $("#entrar").css('display', 'block');
+            $("#inicio").css('display', 'none');
+
+            telas.push(2);
+        });
+
+
+        $("#entrar_form").submit(function(){
+            jQuery.ajax({
+                type: "POST",
+                url: "http://vipsio.com.br/admin/api/login_api.php",
+                data: { usuario:$("#usuario").val(), senha:$("#senha").val()},
+                success: function(data)
+                {
+                    var resultado = JSON.parse(data);
+                    console.log(data);
+                    if(resultado['return'] == 'sucesso'){
+                        console.log('a');
+                    }else{
+                        $(".div_erro").html(resultado['return']);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+                } 
+            });
+
+            return false;
+        });
+    });
+</script>
 </body>
 
 </html>
