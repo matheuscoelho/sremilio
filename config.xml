@@ -14,13 +14,6 @@
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
 
-    <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
-
-    <access origin="http://vipsio.com.br" />
-
-    <access origin="http://vipsio.com.br" subdomains="true" />
-
-    <access origin=".*"/>
 
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
