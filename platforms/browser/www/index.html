@@ -102,44 +102,67 @@
         }, false );
 
 
-        $("#inicio").css('display', 'block');
-        telas.push(1);
+        if((localStorage.registrationId === '') || (localStorage.registrationId === 'undefined') || (localStorage.registrationId === 'null') || (localStorage.usuario === '') || (localStorage.usuario === 'undefined') || (localStorage.usuario === 'null')){
+            //tela com opção pra entrar ou cadastrar
+            $("#inicio").css('display', 'block');
+            telas.push(1);
 
-        $(".entrar_bnt").click(function(){
-            $("#entrar").css('display', 'block');
-            $("#inicio").css('display', 'none');
+            //botão na tela inical q leva ao cadastro
+            $(".entrar_bnt").click(function(){
+                $("#entrar").css('display', 'block');
+                $("#inicio").css('display', 'none');
 
-            telas.push(2);
-        });
-
-
-        $("#entrar_form").submit(function(){
-            jQuery.ajax({
-                type: "POST",
-                url: "http://vipsio.com.br/admin/api/login_api.php",
-                data: { usuario:$("#usuario").val(), senha:$("#senha").val()},
-                success: function(data)
-                {
-                    var resultado = JSON.parse(data);
-                    console.log(data);
-                    
-                    if(resultado['return'] == 'sucesso'){
-
-                        var registrationId = localStorage.registrationId;
-                        alert(registrationId);
-                        
-                    }else{
-                        $(".div_erro").html(resultado['return']);
-                    }
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
-                } 
+                telas.push(2);
             });
 
-return false;
-});
-});
+            //formulario que leva a pagina inicial do sistema
+            $("#entrar_form").submit(function(){
+                jQuery.ajax({
+                    type: "POST",
+                    url: "http://vipsio.com.br/admin/api/login_api.php",
+                    data: { usuario:$("#usuario").val(), senha:$("#senha").val()},
+                    success: function(data)
+                    {
+                        var resultado = JSON.parse(data);
+
+                        if(resultado['return'] == 'sucesso'){
+                            localStorage.usuario = resultado['sis_prime']['usuario'];
+
+                            resultado = '';
+                            jQuery.ajax({
+                                type: "POST",
+                                url: "http://vipsio.com.br/admin/api/registrationId_api.php",
+                                data: { usuario: localStorage.usuario, registrationId:localStorage.registrationId, operadora:'google_registrationId'},
+                                success: function(data)
+                                { 
+                                    var resultado = JSON.parse(data);
+                                    if(resultado['return'] == 'sucesso'){
+                                        alert('logado com sucesso');
+                                    }else{
+                                        $(".div_erro").html(resultado['return']);
+                                    }
+                                },
+                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+                                } 
+
+                            });
+
+                        }else{
+                            $(".div_erro").html(resultado['return']);
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+                    } 
+                });
+
+            return false;
+            });
+        }else{
+            alert('logado com sucesso 2');
+        }
+    });
 
 </script>
 </body>
