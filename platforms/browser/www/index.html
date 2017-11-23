@@ -64,6 +64,21 @@
                 <div id="entrar_7"><input type="submit" value="Entrar"></div>
             </form>
         </div>
+
+        <div id="agendamento" class="view" style="" tela="3">
+            <form method="POST" id="entrar_form">
+                <div style="width:80vw; height:80vh">
+                    <div id="entrar_1"><h1>Agendamento</h1></div>
+                    <div class="div_erro"></div>
+                    <div id="entrar_2"><p>NOME DE USUARIO OU E-MAIL</p></div>
+                    <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
+                    <div id="entrar_4"><p>SENHA<p></div>
+                    <div id="entrar_5"><input type="password" name="senha" id="senha"></div>
+                    <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
+                </div>                
+                <div id="entrar_7"><input type="submit" value="Entrar"></div>
+            </form>
+        </div>
     </div>
 
 
@@ -102,7 +117,8 @@
         }, false );
 
 
-alert(localStorage.usuario);
+        localStorage.usuario = 'matheus';
+        localStorage.registrationId = 'fcKvkQRDA0E:APA91bE1M7jMAlYtv67KIu1C2wUdBrmf0vIekzKZb0iN1sJo4QwaX2sGnO1ksdZHeoxuJS_8ofct7j7VCYrV-SfBsfTDvnJVbkvRtjsYzX3wg4juQ_1zGP0cIgt3A4MSnUdCbHEvjayY';
 
         if((localStorage.registrationId == '') || (typeof localStorage.registrationId == 'undefined') || (localStorage.registrationId == 'null') || (localStorage.usuario == '') || (typeof localStorage.usuario == 'undefined') || (localStorage.usuario == 'null')){
             //tela com opção pra entrar ou cadastrar

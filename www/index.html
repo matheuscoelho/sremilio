@@ -1,26 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
@@ -38,11 +17,162 @@
 -->
 <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
+<title>VIPS.IO</title>
+
+<link rel="icon" type="image/png" href="../img/logo.png" />
+
+
+<!-- Bootstrap -->
+<link href="vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="vendors/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+
+<!-- Switchery -->
+<link href="vendors/switchery/switchery.min.css" rel="stylesheet">
+
+<!-- select chosen -->
+<link rel="stylesheet" href="vendors/chosen/chosen.css">
+
+
+<!-- Custom Theme Style -->
+<link href="build/css/custom.css" rel="stylesheet">
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<style type="text/css">
+.del_tr{
+    cursor: pointer;
+}
+</style>
+
 <link rel="stylesheet" type="text/css" href="css/index.css" />
-<title>Hello World</title>
+
 </head>
 
-<body>
+<body class="nav-md">
+    <div class="container body" id="template">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <!--<div class="navbar nav_title" style="border: 0;">
+                        <center><a href="index.html" class="site_title"><i class="glyphicon glyphicon-send "></i> <span>PRIME!</span></a></center>
+                    </div>-->
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="images/user.png" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Bem vindo</span>
+                            <h2></h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>Geral</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <li>
+                                        <a href="index.php"/><i class="fa fa-cubes"></i> Início</a>
+                                    </li>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/user.png" alt="">Admin
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <!--<li><a href="javascript:;"> Foto de perfil</a></li>
+                                    <li><a href="javascript:;"> Perfil</a></li>
+                                    <li><a href="javascript:;"> Alterar senha</a></li>-->
+                                    <li><a href="op/sair_op.php"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- conteudo -->
+            <div class="right_col" role="main">
+
+                <div class="alert alert-success fechaClick">
+                </div>
+                <div class="alert alert-danger fechaClick">
+                    <strong>Ops!</strong> 
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>PAGINA</h2>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content" id="pag_ativa">
+                                
+                                CONTEUDO
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /fim conteudo -->
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    <!--<span style="font-size: 15px;">Desenvolvido por <a href="https://navegarsistemas.com">Navegar Sistemas</a></span><br>-->
+                    Template por <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+
+
+
+
+
     <div class="app" onclick="">
         <div id="inicio" class="view" style="display: none;" tela="1">
             <div id="inicio_1"><img src="img/logo.png"></div>
@@ -64,10 +194,29 @@
                 <div id="entrar_7"><input type="submit" value="Entrar"></div>
             </form>
         </div>
+
     </div>
 
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- select chosen -->   
+    <script src="vendors/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <!-- Datatables -->
+    
+    <script src="vendors/switchery/switchery.min.js"></script>
+    <!-- tela de bloqueio durante os submits -->
+    <script src="vendors/jquery.blockUI.js"></script>
+    <!-- mascaras-->
+    <script src="vendors/mascara.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.js"></script>
 
-    <script type="text/javascript" src="cordova.js"></script>
+
+
     <script type="text/javascript" src="js/index.js"></script>
     <script src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" type="text/javascript">
@@ -102,7 +251,9 @@
         }, false );
 
 
-alert(localStorage.usuario);
+        localStorage.usuario = 'matheus';
+        localStorage.registrationId = 'fcKvkQRDA0E:APA91bE1M7jMAlYtv67KIu1C2wUdBrmf0vIekzKZb0iN1sJo4QwaX2sGnO1ksdZHeoxuJS_8ofct7j7VCYrV-SfBsfTDvnJVbkvRtjsYzX3wg4juQ_1zGP0cIgt3A4MSnUdCbHEvjayY';
+
 
         if((localStorage.registrationId == '') || (typeof localStorage.registrationId == 'undefined') || (localStorage.registrationId == 'null') || (localStorage.usuario == '') || (typeof localStorage.usuario == 'undefined') || (localStorage.usuario == 'null')){
             //tela com opção pra entrar ou cadastrar
@@ -159,14 +310,38 @@ alert(localStorage.usuario);
                     } 
                 });
 
-            return false;
-            });
-        }else{
-            alert('logado com sucesso 2');
-        }
-    });
+return false;
+});
+}else{
+    alert('logado com sucesso 2');
+}
+});
 
 </script>
-</body>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    $.blockUI({ message: '<h1><img src="images/box.gif" /> Aguarde um momento...</h1>' }); 
+    $(document).ajaxStop($.unblockUI); -->
+    <script type="text/javascript"> 
+
+    $(document).ready(function() {
+        
+    }); 
+    </script>
+
+</body>
 </html>
