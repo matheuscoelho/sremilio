@@ -20,6 +20,8 @@
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -28,34 +30,38 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#000;
     background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width: 100vw;
     height: 100vh;
-    color: #FFF;
 }
 
-h1{
-    text-align: center;
-}
-
-p{
-    color: #BBB;
-    text-align: left;
-}
 
 /* Portrait layout (default) */
 .app {
     width: 100vw;
     height: 100vh;
+    background-color: #000;
 }
+
+
+
+.app p{
+    color: #BBB;
+    text-align: left;
+
+}
+.app h1{
+    text-align: center;
+}
+
 .app .view{
     width: 100vw;
     height: 100vh;
+    color: #FFF;
+    text-transform:uppercase;
 }
 
 /* DIV ERRO *********************************/
@@ -130,7 +136,7 @@ p{
 }
 
 #entrar #entrar_1{
-    padding-top: 30%;
+    margin-top: 30%;
     height: 10%;
 }
 #entrar #entrar_7{
@@ -146,4 +152,12 @@ p{
     background-color: #FFF;
     border: none;
     outline: none;
+    color: #000;
+    font-size: 30px;
+}
+
+/* TEMPLATE ***********************************************/
+
+#template{
+    background-color: #FFF;
 }
