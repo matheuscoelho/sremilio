@@ -22,6 +22,7 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-style:normal;
 }
 
 body {
@@ -36,6 +37,19 @@ body {
     padding:0px;
     width: 100vw;
     height: 100vh;
+}
+
+.view p{
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-style:normal;
+}
+
+.nav_menu i{
+    color: #000;
+}
+
+.main_container{
+    background: #000;
 }
 
 
@@ -73,21 +87,18 @@ body {
 
 /* TELA INICIAL - ENTRAR OU CADASTRAR **********************************************/
 #inicio div{
-    position: relative;
+   display: table;
+   width: 100%;
 }
 
 #inicio h1{
-    height: 50%;
-    width: 100%;
-
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 0; right: 0;
-    margin: auto;    
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
 }
 
 #inicio #inicio_1{
-    height: 80%;
+    height: 80vh;
     position: relative;
 
 }
@@ -101,13 +112,15 @@ body {
 }
 
 #inicio #inicio_2{
-    height: 10%;
+    height: 10vh;
+    max-height: 100px;
     background-color: #FFF;
     color: #000;
 }
 
 #inicio #inicio_3{
-    height: 10%;
+    height: 10vh;
+    max-height: 100px;
     color: #FFF;
 }
 
@@ -115,7 +128,7 @@ body {
 
 #entrar #entrar_form{
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto;   
 }
 
 
@@ -136,11 +149,12 @@ body {
 }
 
 #entrar #entrar_1{
-    margin-top: 30%;
+    margin:30px 0 10px 0; 
     height: 10%;
 }
 #entrar #entrar_7{
-    height: 15vw;
+    height: 10vh;
+    max-height: 60px;
 }
 
 #entrar #entrar_7 input{

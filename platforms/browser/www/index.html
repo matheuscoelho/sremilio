@@ -115,7 +115,7 @@
                                     <!--<li><a href="javascript:;"> Foto de perfil</a></li>
                                     <li><a href="javascript:;"> Perfil</a></li>
                                     <li><a href="javascript:;"> Alterar senha</a></li>-->
-                                    <li><a href="op/sair_op.php"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                                    <li><a href="#" id="sair_a"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -191,7 +191,7 @@
                     <div class="div_erro"></div>
                     <div id="entrar_2"><p>NOME DE USUARIO OU E-MAIL</p></div>
                     <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
-                    <div id="entrar_4"><p>SENHA<p></div>
+                    <div id="entrar_4"><p>SENHA</p></div>
                     <div id="entrar_5"><input type="password" name="senha" id="senha"></div>
                     <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
                 </div>                
@@ -292,26 +292,28 @@
         }, false );
 
 
-        //localStorage.usuario = 'matheus';
-        //localStorage.registrationId = 'fcKvkQRDA0E:APA91bE1M7jMAlYtv67KIu1C2wUdBrmf0vIekzKZb0iN1sJo4QwaX2sGnO1ksdZHeoxuJS_8ofct7j7VCYrV-SfBsfTDvnJVbkvRtjsYzX3wg4juQ_1zGP0cIgt3A4MSnUdCbHEvjayY';
-
-
-        if((localStorage.registrationId == '') || (typeof localStorage.registrationId == 'undefined') || (localStorage.registrationId == 'null') || (localStorage.usuario == '') || (typeof localStorage.usuario == 'undefined') || (localStorage.usuario == 'null')){
+        localStorage.usuario = 'matheus';
+        localStorage.registrationId = 'fcKvkQRDA0E:APA91bE1M7jMAlYtv67KIu1C2wUdBrmf0vIekzKZb0iN1sJo4QwaX2sGnO1ksdZHeoxuJS_8ofct7j7VCYrV-SfBsfTDvnJVbkvRtjsYzX3wg4juQ_1zGP0cIgt3A4MSnUdCbHEvjayY';
 
             //tela com opção pra entrar ou cadastrar
             $("#inicio").css('display', 'block');
             telas.push(1);
 
             //botão na tela inical q leva ao cadastro
-            $(".entrar_bnt").click(function(){
+
+            $(document).on('click','.entrar_bnt', function(){ 
                 $("#entrar").css('display', 'block');
                 $("#inicio").css('display', 'none');
 
                 telas.push(2);
             });
 
+        if((localStorage.registrationId == '') || (typeof localStorage.registrationId == 'undefined') || (localStorage.registrationId == 'null') || (localStorage.usuario == '') || (typeof localStorage.usuario == 'undefined') || (localStorage.usuario == 'null')){
+
+
             //formulario que leva a pagina inicial do sistema
-            $("#entrar_form").submit(function(){
+
+            $(document).on('submit','#entrar_form', function(){ 
                 jQuery.ajax({
                     type: "POST",
                     url: "http://vipsio.com.br/admin/api/login_api.php",
@@ -373,9 +375,16 @@
                     var resultado = JSON.parse(data);
                     if(resultado['return'] == 'sucesso'){
                         $('.servicos_div').html(resultado['html']);
-
+                        var t = true;
                     }else{
                         $(".div_erro").html(resultado['return']);
+                    }
+
+                    if(t){
+                        var elems = Array.prototype.slice.call(document.querySelectorAll('.servicos_div input[type="checkbox"]'));
+                        elems.forEach(function(html) {
+                            var switchery = new Switchery(html, { size: 'small' });
+                        });
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -393,11 +402,6 @@
                     var resultado = JSON.parse(data);
                     if(resultado['return'] == 'sucesso'){
                         $('.funcionarios_div').html(resultado['html']);
-
-                        var elems = Array.prototype.slice.call(document.querySelectorAll('#conteudo_pag input[type="checkbox"]'));
-                        elems.forEach(function(html) {
-                            var switchery = new Switchery(html, { size: 'small' });
-                        });
                     }else{
                         $(".div_erro").html(resultado['return']);
                     }
@@ -448,6 +452,7 @@
                             { 
                                 var resultado = JSON.parse(data);
                                 $('.horario_div').html(resultado['html']);
+
                             },
                             error: function(XMLHttpRequest, textStatus, errorThrown) {
                                 alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
@@ -457,7 +462,7 @@
                 }
             });
 
-            $("#data_agendamento").change(function(){
+            $(document).on('change','#data_agendamento', function(){ 
                 var data_sel        = $("#data_agendamento").val();
                 var funcionario_sel = $('input:radio[name=funcionario]:checked').val();
 
@@ -627,7 +632,7 @@
                 return false;
             });
 
-            $("#reservas_a").click(function(){
+            $(document).on('click','#reservas_a', function(){ 
 
                 $('#titulo_pag').html('Reservas');
                 $('#conteudo_pag').html('Carregando...');
@@ -657,7 +662,7 @@
             });
 
 
-            $("#agendar_a").click(function(){
+            $(document).on('click','#agendar_a', function(){ 
                 //carrega pagina inicial
                 $('#titulo_pag').html('Faça seu agendamento!');
                 $('#conteudo_pag').html($('#agendamento').html());
@@ -667,6 +672,24 @@
                     var switchery = new Switchery(html, { size: 'small' });
                 });
             });   
+
+
+            $(document).on('click','#sair_a', function(){ 
+
+                localStorage.usuario = '';
+                localStorage.registrationId = '';
+
+                telas = '';
+                telas = [];
+
+                $('#template').css('display', 'none');
+                $('#telas_container').css('display', 'block'); 
+
+                $("#inicio").css('display', 'block');
+
+                telas.push(1);
+
+            });
         }
     });
 
