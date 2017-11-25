@@ -240,15 +240,15 @@
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.js"></script>
 
-    <script type="text/javascript" src="js/index.js"></script>
-
     <!-- Switchery -->
     <script src="vendors/switchery/dist/switchery.min.js"></script>
     <!-- Datatables -->
+
+
+    <script type="text/javascript" src="js/index.js"></script>
+
     <script type="text/javascript" type="text/javascript">
     app.initialize();
-
-
 
     var ajaxBlock = function() { $.blockUI({message: '<img src="images/box.gif" width="50px" /><p>Aguarde...</p>'}) }
     $(document).ajaxStart(ajaxBlock).ajaxStop($.unblockUI);;
