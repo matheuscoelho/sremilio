@@ -240,15 +240,15 @@
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.js"></script>
 
-    <script type="text/javascript" src="js/index.js"></script>
-
     <!-- Switchery -->
     <script src="vendors/switchery/dist/switchery.min.js"></script>
     <!-- Datatables -->
+
+
+    <script type="text/javascript" src="js/index.js"></script>
+
     <script type="text/javascript" type="text/javascript">
     app.initialize();
-
-
 
     var ajaxBlock = function() { $.blockUI({message: '<img src="images/box.gif" width="50px" /><p>Aguarde...</p>'}) }
     $(document).ajaxStart(ajaxBlock).ajaxStop($.unblockUI);;
@@ -290,10 +290,6 @@
 
             e.preventDefault();
         }, false );
-
-
-        localStorage.usuario = 'matheus';
-        localStorage.registrationId = 'fcKvkQRDA0E:APA91bE1M7jMAlYtv67KIu1C2wUdBrmf0vIekzKZb0iN1sJo4QwaX2sGnO1ksdZHeoxuJS_8ofct7j7VCYrV-SfBsfTDvnJVbkvRtjsYzX3wg4juQ_1zGP0cIgt3A4MSnUdCbHEvjayY';
 
             //tela com opção pra entrar ou cadastrar
             $("#inicio").css('display', 'block');
@@ -357,6 +353,8 @@
             return false;
             });
         }else{
+
+        alert(localStorage.registrationId);
             //carrega templete
             $('#template').css('display', 'block');
             $('#telas_container').css('display', 'none'); 
@@ -375,16 +373,13 @@
                     var resultado = JSON.parse(data);
                     if(resultado['return'] == 'sucesso'){
                         $('.servicos_div').html(resultado['html']);
-                        var t = true;
-                    }else{
-                        $(".div_erro").html(resultado['return']);
-                    }
-
-                    if(t){
-                        var elems = Array.prototype.slice.call(document.querySelectorAll('.servicos_div input[type="checkbox"]'));
+                        
+                        var elems = Array.prototype.slice.call(document.querySelectorAll('#conteudo_pag input[type="checkbox"]'));
                         elems.forEach(function(html) {
                             var switchery = new Switchery(html, { size: 'small' });
                         });
+                    }else{
+                        $(".div_erro").html(resultado['return']);
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
