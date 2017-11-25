@@ -161,3 +161,19 @@ body {
 #template{
     background-color: #FFF;
 }
+
+/* PEDIDOS ***********************************************/
+
+.pedidos{
+    border: 1px solid #E6E9ED;
+    margin-bottom: 10px;
+    padding: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.pedidos p{
+    color: #000;   
+
+}
