@@ -12,7 +12,7 @@
   "cordova": {
     "plugins": {
       "phonegap-plugin-push": {
-        "SENDER_ID": "249880936399"
+        "SENDER_ID": ""
       },
       "cordova-plugin-whitelist": {}
     }
