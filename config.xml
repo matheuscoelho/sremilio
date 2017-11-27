@@ -14,8 +14,15 @@
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
 
-    <icon src="res/icon.png" />
-    <splash src="res/icon.png" />
+
+    <icon height="36" src="res/icon/36.png" width="36" />
+    <icon height="48" src="res/icon/48.png" width="48" />
+    <icon height="72" src="res/icon/72.png" width="72" />
+    <icon height="96" src="res/icon/96.png" width="96" />
+    <icon height="144" src="res/icon/144.png" width="144" />
+    <icon height="192" src="res/icon/192.png" width="192" />
+    <splash height="240" src="res/icon/240x320.png" width="320" />
+    <splash height="320" src="res/icon/240x320.png" width="240" />
 
     <access origin="*" />
     <allow-intent href="http://*/*" />
