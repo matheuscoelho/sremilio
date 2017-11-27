@@ -107,7 +107,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/user.png" alt="">Admin
+                                    <img src="images/user.png" alt=""><span id="usuario_span"></span>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 
@@ -117,15 +117,28 @@
                                     <li><a href="javascript:;"> Alterar senha</a></li>-->
                                     <li><a href="#" id="sair_a"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                                 </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- /top navigation -->
 
-            <!-- conteudo -->
-            <div class="right_col" role="main">
+
+                                <li role="presentation" class="dropdown" id="qtde_notificacoes_li">
+                                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green" id="qtde_notificacoes"></span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+
+
+                                </ul>
+                            </li>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- conteudo -->
+        <div class="right_col" role="main">
 
                 <!--
                 <div class="alert alert-success fechaClick">
@@ -163,7 +176,7 @@
                 <footer>
                     <div class="pull-right">
                         <!--<span style="font-size: 15px;">Desenvolvido por <a href="https://navegarsistemas.com">Navegar Sistemas</a></span><br>-->
-                        Template por <a href="https://colorlib.com">Colorlib</a>
+                        Servidores de dados <a href="http://vipsio.com.br/">Vips.IO</a>
                     </div>
                     <div class="clearfix"></div>
                 </footer>
@@ -248,11 +261,43 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
+    <script src="http://vipsio.com.br:3001/socket.io/socket.io.js"></script>
+
     <script type="text/javascript" type="text/javascript">
     app.initialize();
 
     var ajaxBlock = function() { $.blockUI({message: '<img src="images/box.gif" width="50px" /><p>Aguarde...</p>'}) }
     $(document).ajaxStart(ajaxBlock).ajaxStop($.unblockUI);;
+
+
+    var socket = io.connect("http://vipsio.com.br:3001"); 
+
+    socket.on('notificacoes_cliente', function(mensagem){
+        alert(mensagem);
+        console.log(mensagem);
+    });
+
+    function carrega_notificacoes(id_destinatario){ 
+
+        jQuery.ajax({
+            type: "POST",
+            url: "http://vipsio.com.br/admin/api/consultar_notificacoes_api.php",
+            data: { id_destinatario:id_destinatario},
+            success: function(data)
+            {
+                var resultado = JSON.parse(data);
+                if(resultado['return'] == 'sucesso'){
+                    $('#menu1').html(resultado['html']);
+                    $('#qtde_notificacoes').html(resultado['qtde_notificacoes']);
+                }else{
+                    //$(".div_erro").html(resultado['return']);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+            } 
+        });
+    }
 
     $(document).ready(function(){
 
@@ -305,109 +350,121 @@
                 telas.push(2);
             });
 
+            localStorage.id_usuario = 16;
+            localStorage.usuario = 'matheus';
+            localStorage.registrationId = 'fSt_1yjhs30:APA91bF0YYx5mkH_6lYqBX31DcNNk1GA0RTBe3f5XBgJdw_K5bBhCYHI-Bh-JNVb8oOkAiaWz74CiX25Q-SW5ioEuX3ErTJa2l5tqhYX0QdszEYe8nvOi6appsQiiGkRSKooI70SNShI';
+
+
             if((localStorage.registrationId == '') || (typeof localStorage.registrationId == 'undefined') || (localStorage.registrationId == 'null') || (localStorage.usuario == '') || (typeof localStorage.usuario == 'undefined') || (localStorage.usuario == 'null')){
 
 
-            //formulario que leva a pagina inicial do sistema
+                //formulario que leva a pagina inicial do sistema
+                $(document).on('submit','#entrar_form', function(){ 
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "http://vipsio.com.br/admin/api/login_api.php",
+                        data: { usuario:$("#usuario").val(), senha:$("#senha").val()},
+                        success: function(data)
+                        {
+                            var resultado = JSON.parse(data);
 
-            $(document).on('submit','#entrar_form', function(){ 
-                jQuery.ajax({
-                    type: "POST",
-                    url: "http://vipsio.com.br/admin/api/login_api.php",
-                    data: { usuario:$("#usuario").val(), senha:$("#senha").val()},
-                    success: function(data)
-                    {
-                        var resultado = JSON.parse(data);
+                            if(resultado['return'] == 'sucesso'){
+                                localStorage.usuario    = resultado['sis_prime']['usuario'];
+                                localStorage.id_usuario = resultado['sis_prime']['id_usuario'];
+                                $("#usuario_span").html(localStorage.usuario);
 
-                        if(resultado['return'] == 'sucesso'){
-                            localStorage.usuario = resultado['sis_prime']['usuario'];
+                                resultado = '';
+                                jQuery.ajax({
+                                    type: "POST",
+                                    url: "http://vipsio.com.br/admin/api/registrationId_api.php",
+                                    data: { usuario: localStorage.usuario, registrationId:localStorage.registrationId, operadora:'google_registrationId'},
+                                    success: function(data)
+                                    { 
+                                        var resultado = JSON.parse(data);
+                                        /*se o login passar*/
+                                        if(resultado['return'] == 'sucesso'){
 
-                            resultado = '';
-                            jQuery.ajax({
-                                type: "POST",
-                                url: "http://vipsio.com.br/admin/api/registrationId_api.php",
-                                data: { usuario: localStorage.usuario, registrationId:localStorage.registrationId, operadora:'google_registrationId'},
-                                success: function(data)
-                                { 
-                                    var resultado = JSON.parse(data);
-                                    //se o login passar
-                                    if(resultado['return'] == 'sucesso'){
-                                        
-                                        //carrega templete
-                                        $('#template').css('display', 'block');
-                                        $('#telas_container').css('display', 'none'); 
-                                        //carrega pagina inicial
-                                        $('#titulo_pag').html('Faça seu agendamento!');
-                                        $('#conteudo_pag').html($('#agendamento').html());
-                                        telas.push(4);
+                                            socket.emit('create-room', Date.now(), localStorage.usuario);
 
-                                        //carrega os servicos na pagina de agendamentos
-                                        jQuery.ajax({
-                                            type: "POST",
-                                            url: "http://vipsio.com.br/admin/api/consultar_servicos_api.php",
-                                            data: { ok:'ok'},
-                                            success: function(data)
-                                            {
-                                                var resultado = JSON.parse(data);
-                                                if(resultado['return'] == 'sucesso'){
-                                                    $('.servicos_div').html(resultado['html']);
+                                            //carrega templete
+                                            $('#template').css('display', 'block');
+                                            $('#telas_container').css('display', 'none'); 
+                                            //carrega pagina inicial
+                                            $('#titulo_pag').html('Faça seu agendamento!');
+                                            $('#conteudo_pag').html($('#agendamento').html());
+                                            telas.push(4);
 
-                                                    var elems = Array.prototype.slice.call(document.querySelectorAll('#conteudo_pag input[type="checkbox"]'));
-                                                    elems.forEach(function(html) {
-                                                        var switchery = new Switchery(html, { size: 'small' });
-                                                    });
-                                                }else{
-                                                    $(".div_erro").html(resultado['return']);
-                                                }
-                                            },
-                                            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                                alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
-                                            } 
-                                        });
+                                            carrega_notificacoes(localStorage.id_usuario);
 
-                                        //carrega os funcionarios na pagina de agendamentos
-                                        jQuery.ajax({
-                                            type: "POST",
-                                            url: "http://vipsio.com.br/admin/api/consultar_funcionarios_api.php",
-                                            data: { id_empresa:3 },
-                                            success: function(data)
-                                            {
-                                                var resultado = JSON.parse(data);
-                                                if(resultado['return'] == 'sucesso'){
-                                                    $('.funcionarios_div').html(resultado['html']);
-                                                }else{
-                                                    $(".div_erro").html(resultado['return']);
-                                                }
-                                            },
-                                            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                                alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
-                                            } 
-                                        });
+                                            //carrega os servicos na pagina de agendamentos
+                                            jQuery.ajax({
+                                                type: "POST",
+                                                url: "http://vipsio.com.br/admin/api/consultar_servicos_api.php",
+                                                data: { ok:'ok'},
+                                                success: function(data)
+                                                {
+                                                    var resultado = JSON.parse(data);
+                                                    if(resultado['return'] == 'sucesso'){
+                                                        $('.servicos_div').html(resultado['html']);
+
+                                                        var elems = Array.prototype.slice.call(document.querySelectorAll('#conteudo_pag input[type="checkbox"]'));
+                                                        elems.forEach(function(html) {
+                                                            var switchery = new Switchery(html, { size: 'small' });
+                                                        });
+                                                    }else{
+                                                        $(".div_erro").html(resultado['return']);
+                                                    }
+                                                },
+                                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+                                                } 
+                                            });
+
+                                            //carrega os funcionarios na pagina de agendamentos
+                                            jQuery.ajax({
+                                                type: "POST",
+                                                url: "http://vipsio.com.br/admin/api/consultar_funcionarios_api.php",
+                                                data: { id_empresa:3 },
+                                                success: function(data)
+                                                {
+                                                    var resultado = JSON.parse(data);
+                                                    if(resultado['return'] == 'sucesso'){
+                                                        $('.funcionarios_div').html(resultado['html']);
+                                                    }else{
+                                                        $(".div_erro").html(resultado['return']);
+                                                    }
+                                                },
+                                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+                                                } 
+                                            });
 
 
 
-                                    }else{
-                                        $(".div_erro").html(resultado['return']);
-                                    }
-                                },
-                                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
-                                } 
-
-                            });
-
-                        }else{
-                            $(".div_erro").html(resultado['return']);
-                        }
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
-                    } 
-                });
-
-            return false;
-            });
 }else{
+    $(".div_erro").html(resultado['return']);
+}
+},
+error: function(XMLHttpRequest, textStatus, errorThrown) {
+    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+} 
+
+});
+
+}else{
+    $(".div_erro").html(resultado['return']);
+}
+},
+error: function(XMLHttpRequest, textStatus, errorThrown) {
+    alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+} 
+});
+
+return false;
+});
+}else{
+
+    socket.emit('create-room', Date.now(), localStorage.usuario);
 
             //carrega templete
             $('#template').css('display', 'block');
@@ -416,6 +473,11 @@
             $('#titulo_pag').html('Faça seu agendamento!');
             $('#conteudo_pag').html($('#agendamento').html());
             telas.push(4);
+
+
+            carrega_notificacoes(localStorage.id_usuario);
+
+            $("#usuario_span").html(localStorage.usuario);
 
             //carrega os servicos na pagina de agendamentos
             jQuery.ajax({
@@ -640,6 +702,9 @@ $(document).on('submit','#agendamento_form', function(){
                                 data: { valor:valor, tempo:tempo, id_produto:id_produto, nome:nome, data_sel:data_sel, funcionario_sel:funcionario_sel, tempoTotal:tempoTotal, hora_sel:hora_sel, id_empresa:3, cliente:localStorage.usuario},
                                 success: function(data)
                                 { 
+                                    /*função, titulo, mensagem, remetente, id_mysql do destinatario*/
+                                    socket.emit('notifica_agendamento', 'Sr. Emilio', localStorage.usuario + ' solicitou uma reserva.', localStorage.id_usuario, funcionario_sel);
+
                                     $("#data_agendamento").val('');
 
                                     var resultado = JSON.parse(data);
@@ -740,6 +805,26 @@ $(document).on('click','#sair_a', function(){
 
     telas.push(1);
 
+});
+
+
+$('#qtde_notificacoes_li').click(function(){ 
+  jQuery.ajax({
+        type: "POST",
+        url: "http://vipsio.com.br/admin/api/marca_visualizacao_notificacoes_api.php",
+        data: { id_destinatario:localStorage.id_usuario },
+        success: function(data)
+        {
+            console.log(data);
+            var resultado = JSON.parse(data);
+            if(resultado['return'] == 'sucesso'){
+                $('#qtde_notificacoes').html('');
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+        } 
+    });  
 });
 });
 
