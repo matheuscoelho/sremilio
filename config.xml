@@ -15,14 +15,14 @@
     <preference name="StatusBarStyle" value="blacktranslucent" />
 
 
-    <icon height="36" src="www\img\36.png" width="36" />
-    <icon height="48" src="www\img\48.png" width="48" />
-    <icon height="72" src="www\img\72.png" width="72" />
-    <icon height="96" src="www\img\36.png" width="96" />
-    <icon height="144" src="www\img\36.png" width="144" />
-    <icon height="192" src="www\img\36.png" width="192" />
-    <splash height="240" src="www\img\240x320.png" width="320" />
-    <splash height="320" src="www\img\240x320.png" width="240" />
+    <icon height="36" src="res\icon\img\36.png" width="36" />
+    <icon height="48" src="res\icon\img\48.png" width="48" />
+    <icon height="72" src="res\icon\img\72.png" width="72" />
+    <icon height="96" src="res\icon\img\96.png" width="96" />
+    <icon height="144" src="res\icon\img\144.png" width="144" />
+    <icon height="192" src="res\icon\img\192.png" width="192" />
+    <splash height="240" src="res\icon\img\240x320.png" width="320" />
+    <splash height="320" src="res\icon\img\240x320.png" width="240" />
 
     <access origin="*" />
     <allow-intent href="http://*/*" />
