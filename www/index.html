@@ -194,7 +194,7 @@
         <div id="inicio" class="view" style="display: none;" tela="1">
             <div id="inicio_1"><img src="img/logo.png"></div>
             <div id="inicio_2" class="entrar_bnt"><h1>ENTRAR</h1></div>
-            <div id="inicio_3"><h1>CRIAR CONTA</h1></div>
+            <div id="inicio_3" class="cadastrar_bnt"><h1>CRIAR CONTA</h1></div>
         </div>
 
         <div id="entrar" class="view" style="display: none;" tela="2">
@@ -212,7 +212,7 @@
             </form>
         </div>
 
-        <div id="agendamento" class="view" style="display: none;" tela="3">
+        <div id="agendamento" class="view" style="display: none;" tela="4">
             <form method="POST" id="agendamento_form">
                 <label class="control-label col-md-12 col-sm-12 col-xs-12" for="funcionario">Funcionário <span class="required">*</span></label>
                 <div class="control-label col-md-12 col-sm-12 col-xs-12 funcionarios_div"></div>
@@ -233,7 +233,25 @@
         </div>
 
 
-        <div id="pedidos" class="view" style="display: none;" tela="4">
+        <div id="pedidos" class="view" style="display: none;" tela="5">
+        </div>
+
+
+        <div id="cadastrar" class="view" style="display: none;" tela="3">
+            <form method="POST" id="cadastrar_form">
+                <div style="width:80vw; height:70vh">
+                    <div id="cadastrar_1"><h1>Cadastrar</h1></div>
+                    <div class="div_erro"></div>
+                    <div id="entrar_2"><p>NOME DE USUARIO</p></div>
+                    <div id="entrar_3"><input type="text" name="usuario" id="usuario"></div>
+                    <div id="cadastrar_4"><p>SENHA</p></div>
+                    <div id="cadastrar_5"><input type="password" name="senha" id="senha"></div>
+                    <div id="cadastrar_6"><p>CELULAR</p></div>
+                    <div id="cadastrar_7"><input type="text" name="cel" id="cel"></div>
+                    <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
+                </div>                
+                <div id="cadastrar_8"><input type="submit" value="CADASTRAR"></div>
+            </form>
         </div>
 
     </div>
@@ -315,7 +333,7 @@
             if(telas.length > 1){
                 if(telas[telas.length - 1] > 1){
                     telas.pop();
-                    if(telas[telas.length - 1] < 3){
+                    if(telas[telas.length - 1] <= 3){
                         $('.view').css('display', 'none');
                         $('div[tela="' + telas[telas.length - 1] + '"]').css('display', 'block');
                     }else if(telas[telas.length - 1] == 3){
@@ -325,7 +343,7 @@
                         //carrega pagina inicial
                         $('#titulo_pag').html('Faça seu agendamento!');
                         $('#conteudo_pag').html($('#agendamento').html());
-                        telas.push(4);
+                        navigator.app.exitApp();
                     }
                 }else{
                     navigator.app.exitApp();
@@ -350,6 +368,13 @@
                 telas.push(2);
             });
 
+            $(document).on('click','.cadastrar_bnt', function(){ 
+                $("#cadastrar").css('display', 'block');
+                $("#inicio").css('display', 'none');
+
+                $('input[name="tel"]').mask("+55(99)9999-9999?9");
+                telas.push(3);
+            });
 
             if((localStorage.registrationId == '') || (typeof localStorage.registrationId == 'undefined') || (localStorage.registrationId == 'null') || (localStorage.usuario == '') || (typeof localStorage.usuario == 'undefined') || (localStorage.usuario == 'null')){
 
@@ -388,7 +413,7 @@
                                             //carrega pagina inicial
                                             $('#titulo_pag').html('Faça seu agendamento!');
                                             $('#conteudo_pag').html($('#agendamento').html());
-                                            telas.push(4);
+                                            telas.push(5);
 
                                             carrega_notificacoes(localStorage.id_usuario);
 
@@ -468,7 +493,7 @@ return false;
             //carrega pagina inicial
             $('#titulo_pag').html('Faça seu agendamento!');
             $('#conteudo_pag').html($('#agendamento').html());
-            telas.push(4);
+            telas.push(5);
 
 
             carrega_notificacoes(localStorage.id_usuario);
@@ -724,7 +749,7 @@ $(document).on('submit','#agendamento_form', function(){
 
                                             $('#titulo_pag').html('Reservas');
                                             $('#conteudo_pag').html($('#pedidos').html());
-                                            telas.push(4);
+                                            telas.push(5);
 
 
                                         },
@@ -763,7 +788,7 @@ $(document).on('click','#reservas_a', function(){
 
             $('#titulo_pag').html('Reservas');
             $('#conteudo_pag').html($('#pedidos').html());
-            telas.push(4);
+            telas.push(5);
 
 
         },
@@ -806,37 +831,53 @@ $(document).on('click','#sair_a', function(){
 
 $('#qtde_notificacoes_li').click(function(){ 
   jQuery.ajax({
-        type: "POST",
-        url: "http://vipsio.com.br/admin/api/marca_visualizacao_notificacoes_api.php",
-        data: { id_destinatario:localStorage.id_usuario },
-        success: function(data)
-        {
-            console.log(data);
-            var resultado = JSON.parse(data);
-            if(resultado['return'] == 'sucesso'){
-                $('#qtde_notificacoes').html('');
-            }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
-        } 
-    });  
+    type: "POST",
+    url: "http://vipsio.com.br/admin/api/marca_visualizacao_notificacoes_api.php",
+    data: { id_destinatario:localStorage.id_usuario },
+    success: function(data)
+    {
+        console.log(data);
+        var resultado = JSON.parse(data);
+        if(resultado['return'] == 'sucesso'){
+            $('#qtde_notificacoes').html('');
+        }
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+    } 
+});  
 });
 });
 
 
 </script>
 
-<!--
-    $.blockUI({ message: '<h1><img src="images/box.gif" /> Aguarde um momento...</h1>' }); 
-    $(document).ajaxStop($.unblockUI); -->
-    <script type="text/javascript"> 
+<!-- Inicio scripts terceiros -->
+<script type="text/javascript"> 
+$(document).ready(function() {
+    $('input[name="cep"]').mask("99999-999");
+    $('input[name="fone"]').mask("(99)9999-9999?9");
+    $('input[name="cpf"]').mask("999.999.999-99");
+    $('input[name="cnpj"').mask("99.999.999/9999-99");
+    $('input[name="tel"]').mask("(99)9999-9999?9");
+    $('input[name="cel"]').mask("(99)9999-9999?9");
+    $('.time').mask("99:99");
+    $('.datetime').mask("99/99/9999 99:99:99");
 
-    $(document).ready(function() {
+    if($('#tipo_doc_empresa').val() == 'cnpj'){
+        $('#doc').mask("99.999.999/9999-99");
+    }else if($('#tipo_doc_empresa').val() == 'cpf'){
+        $('#doc').mask("999.999.999-99");
+        $('.cad_simplificado').css('display', 'none');
+    }
 
-    }); 
-    </script>
-
+    if($('#tipo_doc').val() == 'cnpj'){
+        $('#doc').mask("99.999.999/9999-99");
+    }else if($('#tipo_doc').val() == 'cpf'){
+        $('#doc').mask("999.999.999-99");
+        $('.cad_simplificado').css('display', 'none');
+    }
+}); 
 
 
 
