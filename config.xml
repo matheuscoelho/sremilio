@@ -14,7 +14,6 @@
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
 
-
     <icon src="res/icon.png" />
     <splash src="res/icon.png" />
 
