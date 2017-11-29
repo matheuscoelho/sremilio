@@ -200,7 +200,7 @@ body {
     margin: 0 auto;   
 }
 
-#cadastrar #cadastrar_form input[type="text"], #cadastrar #cadastrar_form input[type="password"]{
+#cadastrar #cadastrar_form input[type="text"], #cadastrar #cadastrar_form input[type="password"], #cadastrar #cadastrar_form input[type="email"]{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
