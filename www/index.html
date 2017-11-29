@@ -307,11 +307,13 @@
                     <div id="cadastrar_9">
                         <input type="text" name="cel" id="cad_cel" required>
                     </div>
-                    <!-- <div id="entrar_6"><p>Esqueceu sua senha?</p></div>-->
+
                 </div>
-                <div id="cadastrar_8">
-                    <input id="bnt_cadastrar_api" type="submit" value="CADASTRAR">
-                </div>
+
+                
+                    <div id="cadastrar_10" style="background-color:#000;">
+                        <input id="bnt_cadastrar_api" type="submit" value="CADASTRAR">
+                    </div>
             </form>
         </div>
 
@@ -947,6 +949,32 @@
                 }
             });
         }); 
+
+
+
+$("input").focus(function(e) {
+    var container = $(this).closest('div'),
+        scrollTo = $(this);
+
+    setTimeout((function() {
+        container.animate({
+        scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+        });
+    }), 500);
+
+});
+
+$("input").click(function(e) {
+    e.stopPropagation();
+    var container = $(this).closest('div'),
+        scrollTo = $(this);
+
+    setTimeout((function() {
+        container.animate({
+        scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+        });
+    }), 500);
+});
     </script>
 
 
