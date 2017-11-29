@@ -13,6 +13,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
+    <preference name="fullscreen" value="false" />
 
     <icon src="res/icon.png" />
     <splash src="res/icon.png" />
