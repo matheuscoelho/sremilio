@@ -888,18 +888,27 @@
 
 
             $(document).on('click', '#sair_a', function () {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "http://vipsio.com.br/admin/api/sair_api.php",
+                    data: { id_usuario: localStorage.id_usuario },
+                    success: function (data) {
+                        localStorage.usuario = '';
 
-                localStorage.usuario = '';
+                        telas = '';
+                        telas = [];
 
-                telas = '';
-                telas = [];
+                        $('#template').css('display', 'none');
+                        $('#telas_container').css('display', 'block');
 
-                $('#template').css('display', 'none');
-                $('#telas_container').css('display', 'block');
+                        $("#inicio").css('display', 'block');
 
-                $("#inicio").css('display', 'block');
-
-                telas.push(1);
+                        telas.push(1);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Erro crítico, reinicie sua aplicação, se o problema persistir entre em contato com o suporte.");
+                    }
+                });
 
             });
 
