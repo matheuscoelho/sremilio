@@ -220,12 +220,12 @@ body {
     margin:30px 0 10px 0; 
     height: 10%;
 }
-#cadastrar #cadastrar_8{
+#cadastrar #cadastrar_10{
     height: 10vh;
     max-height: 60px;
 }
 
-#cadastrar #cadastrar_8 input{
+#cadastrar #cadastrar_10 input{
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
