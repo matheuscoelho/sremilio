@@ -355,7 +355,6 @@
 
         socket.on('notificacoes_cliente', function (mensagem) {
             alert(mensagem);
-            console.log(mensagem);
         });
 
         function carrega_notificacoes(id_destinatario) {
@@ -891,7 +890,6 @@
             $(document).on('click', '#sair_a', function () {
 
                 localStorage.usuario = '';
-                localStorage.registrationId = '';
 
                 telas = '';
                 telas = [];

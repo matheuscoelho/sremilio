@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.sremilio" version="1.9.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-   
     <name>Sr. Emílio</name>
     <description>
         A barbearia desde 1948.
@@ -15,10 +14,8 @@
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
     <preference name="fullscreen" value="false" />
-
     <icon src="res/icon.png" />
     <splash src="res/icon.png" />
-
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -34,7 +31,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <plugin name="phonegap-plugin-push" spec="^1.8.4">
-        <variable name="SENDER_ID" value="249880936399" />
+        <variable name="SENDER_ID" value="" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
 </widget>
